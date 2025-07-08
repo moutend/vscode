@@ -3,6 +3,7 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import { isMacintosh } from '../../../../base/common/platform.js';
 import { disposableTimeout } from '../../../../base/common/async.js';
 import { Disposable, DisposableStore } from '../../../../base/common/lifecycle.js';
 import { IReader, autorun, autorunWithStore, derived, observableFromEvent, observableFromPromise, observableFromValueWithChangeEvent, observableSignalFromEvent, wasEventTriggeredRecently } from '../../../../base/common/observable.js';
@@ -87,7 +88,8 @@ export class EditorTextPropertySignalsContribution extends Disposable implements
 			if (
 				args &&
 				args.reason !== CursorChangeReason.Explicit &&
-				args.reason !== CursorChangeReason.NotSet
+				args.reason !== CursorChangeReason.NotSet &&
+        isMacintosh
 			) {
 				// Ignore cursor changes caused by navigation (e.g. which happens when execution is paused).
 				ignoredLineSignalsForCurrentLine.clear();
