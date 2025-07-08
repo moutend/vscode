@@ -130,6 +130,7 @@ export class EditorTextPropertySignalsContribution
 		editorModel: ITextModel,
 		store: DisposableStore,
 	): void {
+  return;
 		let lastLine = -1;
 		const ignoredLineSignalsForCurrentLine = new Set<TextProperty>();
 
