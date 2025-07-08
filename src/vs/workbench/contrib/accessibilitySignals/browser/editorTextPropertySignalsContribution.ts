@@ -175,7 +175,7 @@ export class EditorTextPropertySignalsContribution
 					) {
 						return;
 					}
-
+					console.log(`@@@signal ${signal}`);
 					for (const modality of [
 						"sound",
 						"announcement",
