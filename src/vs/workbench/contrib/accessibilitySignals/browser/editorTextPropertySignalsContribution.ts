@@ -3,7 +3,6 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { spawn } from "child_process";
 import { disposableTimeout } from "../../../../base/common/async.js";
 import {
 	Disposable,
@@ -43,17 +42,6 @@ import {
 import { IWorkbenchContribution } from "../../../common/contributions.js";
 import { IEditorService } from "../../../services/editor/common/editorService.js";
 import { IDebugService } from "../../debug/common/debug.js";
-export function debugSay(message: string): void {
-	const proc = spawn(
-		"say",
-		["-v", "'Kyoko (Enhanced)'", JSON.stringify(message)],
-		{
-			stdio: "ignore", // 余計な出力を抑制
-			detached: true, // Node プロセスと独立して再生する
-		},
-	);
-	proc.unref(); // Node が終了しても再生を続ける
-}
 
 export class EditorTextPropertySignalsContribution
 	extends Disposable
@@ -187,7 +175,7 @@ export class EditorTextPropertySignalsContribution
 					) {
 						return;
 					}
-					debugSay(`signal is ${signal}`);
+
 					for (const modality of [
 						"sound",
 						"announcement",
